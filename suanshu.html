@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>算术题</title>
+  <style type="text/css">
+	h2#output{
+		color:rgb(0,200,100);
+		background-color: pink;
+		position: absolute;
+		right:1em;
+		top:2.2em;
+		text-decoration: underline;
+	}
+  </style>
+ </head>
+ <body>
+ <div id="con1" class="" align = "center">
+  <h2>输入两个十以内的数</h2>
+  <h2>并且选择正确的选项</h2>
+ </div>
+  
+<div id="con2" class="" align = "center">
+	<input type="text" id = "input1" readonly>
+	<span><b>+</b></span>
+	<input type="text" id = "input2" readonly>
+</div>
+
+<div id="con3" class="" align = "center">
+	<b>A:</b><input type = "button" value = "20" id = "output1">
+	<b>B:</b><input type = "button" value = "10" id = "output2">
+	<b>C:</b><input type = "button" value = "15" id = "output3">
+	<b>D:</b><input type = "button" value = "5"  id = "output4">
+	<br>
+	<h2 id = "output">正确答案！</h2>
+</div>
+	<input type = "button" value = "提交答案" id = "ok">
+
+<script type="text/javascript">
+ <!--
+
+	var opNumArr1 = randIntArray(10) ;
+    var opNumArr2 = randIntArray(10) ;
+	var answerArr = [ ] ;
+	for(var i=0 ;i<opNumArr1.length ; i++){
+		answerArr[i] =  opNumArr1[i] + opNumArr2[i] ;
+	}
+	
+	function randIntArray(n) {
+	 var arr = [ ] ;
+         for(var i=0 ; i< n ; i++){
+           var rand = Math.floor( Math.random() * n) ; 
+		   if( arr.indexOf(rand) !== -1){
+		     i -- ;
+
+		   }else{
+		     arr[i] = rand ;
+		   }
+		 }
+	  return arr ;
+	}
+
+	var innum1 = parseInt(Math.random()*10)
+	var innum2 = parseInt(Math.random()*10)
+
+	var outnum1 = document.querySelector("input#input1") ;
+	var outnum2 = document.querySelector("input#input2") ;
+	var outnum3 = document.querySelector("h2#output") ;
+	var answerDoms = document.querySelectorAll("div#con3 input") ;
+
+	var sn = 0 ; 
+
+   function createMath() {
+        outnum1.value = opNumArr1[sn] ; 
+		outnum2.value = opNumArr2[sn] ;
+    var answer = answerArr[sn] ;
+      
+	var rightSn = Math.floor(Math.random() * 4 ) ;
+        for (var i = 0 ; i < 4 ; i++){
+			if( i === rightSn){
+				answerDoms[i].value  = answer ;	
+			}else{
+				var sign = 1 ;
+				if(Math.random() > 0.5 ){
+					sign = - 1 ;
+				}
+			    answerDoms[i].value = answer + sign*(1+Math.floor(Math.random()*4))   ;
+			}
+          
+             answerDoms[i].onclick =  function(){
+			     var sel = parseInt(this.value) ; 
+				 if (sel === answer){
+                  outnum3.textContent = '恭喜！你答对了' ;
+				 }else{
+				  outnum3.textContent = '你答错了，再试一试！'   ;
+				 }			 
+			   };
+        }
+      if(sn===9){
+        sn = 0 ;
+       }else{
+        sn ++ ;
+      }
+   } 
+
+   createMath() ;
+
+   document.querySelector('input#ok').onclick = createMath ;
+ //-->
+ </script>
+
+ </body>
+ 
+</html>
