@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: rgb(114, 114, 188);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.onload= function(){
+            var div1 = document.getElementById("div1") ;
+            document.onkeydown = function(event){
+                event=event||window.enent;
+                console.log(event.keyCode) ;
+                var speed = 10 ;
+                if(event.ctrlKey){
+                    speed =50 ;
+                }
+                if(event.keyCode == 38){
+                    //向上移动
+                    div1.style.top = div1.offsetTop - speed + "px" ;
+                }else if(event.keyCode == 40){
+                    //向下移动
+                    div1.style.top = div1.offsetTop + speed + "px" ;
+                }else if(event.keyCode == 37){
+                    //向左移动
+                    div1.style.left = div1.offsetLeft - speed + "px" ;
+                }else if(event.keyCode == 39){
+                    //向右移动
+                    div1.style.left = div1.offsetLeft + speed + "px" ;
+                }
+            }
+            return false ; 
+        }
+    </script>
+    <div id="div1"></div>
+</body>
+</html>
