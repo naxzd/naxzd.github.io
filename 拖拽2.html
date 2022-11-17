@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: aqua;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: yellow;
+            margin-left: 2em;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.onload=function(){
+            //var ok1 = document.getElementById("pk1");
+            var div1 = document.getElementById("div1");
+            //var pk2 = document.getElementById("pk2");
+            div1.onmousedown = function(event){
+                event=event || window.event
+                //div的偏移量 鼠标.clentX - 元素.offsetLeft
+                //div的偏移量 鼠标.clentY - 元素.offsetTop
+                var ol = event.clientX - div1.offsetLeft;
+                var ot = event.clientY - div1.offsetTop;
+                
+                //document.onmousemove
+                document.onmousemove = function(event){
+                        event=event||window.enent;
+                   
+                    var x = event.clientX - ol ;
+                    var y = event.clientY - ot ;
+                    div1.style.left = x + "px" ;
+                    div1.style.top = y + "px" ;
+
+                }
+            }
+            //下面不能是div1.onmouseup
+            document.onmouseup = function(){
+                //document.onmousedown = null ;
+                //div1.innerHTML = pk2 ;
+                document.onmousemove = null ;
+            }
+            return false;
+        }
+    </script>
+    shishishsi
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>
